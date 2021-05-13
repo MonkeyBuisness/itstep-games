@@ -40,6 +40,8 @@
             padding: 6px;
             color: #fff;
             background: lightseagreen;
+            transition: all 0.5s;
+            opacity: 0;
         }
 
         #logs > .error {
@@ -125,7 +127,7 @@
         let player2Symbol = '';
         let field = [];
         let fieldSize = 0;
-        const delay = 5000;
+        const delay = 3000;
         let pollerId = 0;
         const logsView = document.getElementById('logs');
         const fieldView = document.getElementById('field');
@@ -199,8 +201,9 @@
             }
 
             log.innerHTML = `<b>${playerName}</b>: ${msg}`;
+            setTimeout(() => log.style.opacity = 1, 300);
 
-            logsView.appendChild(log);
+            logsView.prepend(log);
         }
 
         function drawField() {
@@ -336,16 +339,6 @@
 
             fieldView.appendChild(line);
         }
-
-        ////
-        // fieldSize = 3;
-        // field = ['O','X','O','X','O','O','X','O','X'];
-        // player1Name = 'P1';
-        // player1Symbol = 'X';
-        // player2Name = 'P2';
-        // player2Symbol = 'O';
-        // drawField();
-        ////
     </script>
 </body>
 </html>
