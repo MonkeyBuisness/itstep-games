@@ -146,7 +146,13 @@ public class Main {
             Player p = isFirstPlayerTurn ? Player1 : Player2;
             isFirstPlayerTurn = !isFirstPlayerTurn;
 
-            int turn = p.turn(copyField(field, fieldSize), fieldSize);
+            int turn = -1;
+            try {
+                turn = p.turn(copyField(field, fieldSize), fieldSize);
+            } catch (Exception e) {
+                String resp = String.format("%s%%Unexpected exception: %s", p.getName(), e.getMessage());
+                throw new Exception(resp);
+            }
             
             if (turn < 0 || turn > field.length * field.length - 1) {
                 String resp = String.format("%s%%Invalid turn: %d", p.getName(), turn);
